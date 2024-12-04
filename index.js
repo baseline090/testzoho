@@ -34,6 +34,18 @@ app.post('/webhook/zoho/leads', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+app.post('/webhook/sendgrid', async (req, res) => {
+  try {
+    const webhookData = req.body;  // The SendGrid event data
+    console.log('Received SendGrid webhook data:', webhookData);
+
+
+    res.status(200).send('Webhook processed successfully');
+  } catch (error) {
+    console.error('Error processing SendGrid webhook:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
